@@ -1,0 +1,93 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:HospitalApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" Background="White"
+             x:Class="HospitalApp.Views.PharmacyPageView"
+             x:DataType="vm:PharmacyPageViewModel">
+
+    <Design.DataContext>
+        <vm:PharmacyPageViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+        <TextBlock Text="Pharmacy" Foreground="#3E8DC0" FontWeight="Bold" FontSize="30" Margin="20, 10, 10, 10"/>
+
+        <Border Background="#D4E6F1" Margin="50, 60, 50, 50" CornerRadius="20">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header Row -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Background="Black" Grid.Column="0" Margin="2">
+                        <TextBlock Text="MEDICINE ID" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5"/>
+                    </Border>
+                    <Border Background="Black" Grid.Column="1" Margin="2">
+                        <TextBlock Text="MEDICINE NAME" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5"/>
+                    </Border>
+                    <Border Background="Black" Grid.Column="2" Margin="2">
+                        <TextBlock Text="PRICE/UNIT" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5"/>
+                    </Border>
+                    <Border Background="Black" Grid.Column="3" Margin="2">
+                        <TextBlock Text="STOCKS" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5"/>
+                    </Border>
+                    <Border Background="Black" Grid.Column="4" Margin="2">
+                        <TextBlock Text="ADD" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5"/>
+                    </Border>
+                </Grid>
+
+                <!-- DataGrid -->
+                <DataGrid Grid.Row="1"
+                          Margin="0"
+                          ItemsSource="{Binding Medicine}"
+                          AutoGenerateColumns="True"
+                          IsReadOnly="True"
+                          GridLinesVisibility="All"
+                          BorderThickness="5"
+                          BorderBrush="Black"
+                          Background="Black">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Medicine ID" Binding="{Binding MedicineId}" Foreground="White"/>
+                        <DataGridTextColumn Header="Medicine Name" Binding="{Binding Name}" Foreground="White"/>
+                        <DataGridTextColumn Header="Price/Unit" Binding="{Binding Price}" Foreground="White"/>
+                        <DataGridTextColumn Header="Stocks" Binding="{Binding StockQuantity}" Foreground="White"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Footer Row -->
+                <Grid Grid.Row="2" Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Total Price: Pxxx.xx" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Button Content="See Cart" Background="#3E8DC0" Foreground="White" Grid.Column="1" Padding="20,10" CornerRadius="5"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Search and Back Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,50,0">
+            <Button Background="WhiteSmoke" CornerRadius="50" Width="40" Height="40" Margin="5">
+                <TextBlock Text="🔍" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+            <Button Background="WhiteSmoke" CornerRadius="50" Width="40" Height="40" Margin="5">
+                <TextBlock Text="←" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
